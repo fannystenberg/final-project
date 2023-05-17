@@ -1,9 +1,13 @@
 import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { WelcomePage } from 'Components/WelcomePage/WelcomePage';
 
 export const App = () => {
   return (
-    <div>
-      Find me in src/app.js!
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<WelcomePage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
