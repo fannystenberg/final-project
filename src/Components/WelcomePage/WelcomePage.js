@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Switch } from '@mui/material';
 import { styled } from 'styled-components';
-import { SignUp } from './SingUp';
+import { Form } from './Form';
 
 export const WelcomePage = () => {
+  const [checked, setChecked] = useState(false);
+
+  const handleToggle = (event) => {
+    setChecked(event.target.checked)
+  };
+
   return (
     <Wrapper>
-      <SignUp />
+      <Image />
+      <FormWrapper>
+        {!checked ? <Form path="signin" title="Sign in" btnText="Sign in" /> : <Form path="signup" title="Sign up" btnText="Sign up" />}
+        <Switch checked={checked} onChange={handleToggle} />
+      </FormWrapper>
     </Wrapper>
   );
 };
@@ -13,4 +24,18 @@ export const WelcomePage = () => {
 export const Wrapper = styled.section`
     display: grid;
     grid-template-columns: 50% 50%;
+`;
+
+export const Image = styled.div`
+    background-image: url('https://images.unsplash.com/photo-1619468129361-605ebea04b44?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODU0NzE5NDV8&ixlib=rb-4.0.3&q=85');
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+`;
+
+export const FormWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
