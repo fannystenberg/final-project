@@ -13,7 +13,7 @@ export const Form = ({ path, title, btnText }) => {
 
   useEffect(() => {
     if (accessToken) {
-      navigate('/');
+      navigate('/locations');
     }
   }, [accessToken, navigate]);
 

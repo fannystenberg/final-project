@@ -1,25 +1,25 @@
 import React from 'react';
 import { Card, CardContent, CardActions, Typography, IconButton } from '@mui/material';
-import EditLocationAltOutlinedIcon from '@mui/icons-material/EditLocationAltOutlined';
-import WrongLocationOutlinedIcon from '@mui/icons-material/WrongLocationOutlined';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
-export const Location = () => {
+export const Location = ({ title, description }) => {
   return (
-    <Card sx={{ maxWidth: 400, maxHeight: 200 }}>
+    <Card sx={{ maxWidth: 400, maxHeight: 200, margin: '10px' }}>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Title
+          {title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Description
+          {description}
         </Typography>
       </CardContent>
       <CardActions>
         <IconButton>
-          <EditLocationAltOutlinedIcon />
+          <EditOutlinedIcon />
         </IconButton>
         <IconButton>
-          <WrongLocationOutlinedIcon />
+          <DeleteOutlinedIcon />
         </IconButton>
       </CardActions>
     </Card>
