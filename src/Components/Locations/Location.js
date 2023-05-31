@@ -3,7 +3,19 @@ import { Card, CardContent, CardActions, Typography, IconButton } from '@mui/mat
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
-export const Location = ({ title, description }) => {
+export const Location = ({ title, description, id }) => {
+  const handleDelete = (locationId) => {
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    fetch(`https://final-project-es4c3pthxq-no.a.run.app/locations/${locationId}`, options)
+      .then((res) => res.json())
+      .then((data) => { console.log(data.response) })
+  };
+
   return (
     <Card sx={{ maxWidth: 400, maxHeight: 200, margin: '10px' }}>
       <CardContent>
@@ -18,7 +30,7 @@ export const Location = ({ title, description }) => {
         <IconButton>
           <EditOutlinedIcon />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={() => handleDelete(id)}>
           <DeleteOutlinedIcon />
         </IconButton>
       </CardActions>

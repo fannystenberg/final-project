@@ -32,7 +32,11 @@ export const LocationList = () => {
     <>
       {locationList.map((location) => {
         return (
-          <Location key={location._id} title={location.location} description={location.createdAt} />
+          <Location
+            key={location._id}
+            title={location.location}
+            description={location.createdAt}
+            id={location._id} />
         )
       })}
     </>
