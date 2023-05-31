@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Location } from './Location';
+import { EditLocation } from './EditLocation';
 
 export const LocationList = () => {
   const [locationList, setLocationList] = useState([]);
@@ -32,11 +33,14 @@ export const LocationList = () => {
     <>
       {locationList.map((location) => {
         return (
-          <Location
-            key={location._id}
-            title={location.location}
-            description={location.createdAt}
-            id={location._id} />
+          <>
+            <Location
+              key={location._id}
+              title={location.location}
+              description={location.createdAt}
+              id={location._id} />
+            <EditLocation description={location.createdAt} />
+          </>
         )
       })}
     </>

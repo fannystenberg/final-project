@@ -27,10 +27,10 @@ export const Location = ({ title, description, id }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <IconButton>
+        <IconButton type="button">
           <EditOutlinedIcon />
         </IconButton>
-        <IconButton onClick={() => handleDelete(id)}>
+        <IconButton type="button" onClick={() => handleDelete(id)}>
           <DeleteOutlinedIcon />
         </IconButton>
       </CardActions>
