@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardActions, Typography, TextField, IconButton } from '@mui/material';
+import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
-export const EditLocation = ({ description, id, setEdit }) => {
+export const EditLocation = ({ title, description, id, setEdit }) => {
   const [inputValue, setInputValue] = useState('');
   const onSubmit = (locationId) => {
     const options = {
@@ -24,12 +25,16 @@ export const EditLocation = ({ description, id, setEdit }) => {
   };
 
   return (
-    <Card sx={{ maxWidth: 400, maxHeight: 200, margin: '10px' }}>
+    <Card sx={{ maxHeight: 200, width: '100%', margin: '10px' }}>
       <CardContent>
+        <Typography gutterBottom variant="h5" color="red" component="div">
+          <PlaceOutlinedIcon /> {title}
+        </Typography>
         <TextField
           fullWidth
           id="location"
           label="Location"
+          placeholder="Type new location here"
           name="location"
           autoComplete="location"
           onChange={(e) => setInputValue(e.target.value)}

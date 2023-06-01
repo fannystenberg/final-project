@@ -43,6 +43,7 @@ export const LocationList = () => {
               setEdit={setEdit} />}
             {edit.status && location._id === edit.id ? (<EditLocation
               key={location._id}
+              title={location.location}
               description={location._id}
               id={location._id}
               setEdit={setEdit} />) : null}

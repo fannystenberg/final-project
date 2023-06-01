@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardActions, Typography, IconButton } from '@mui/material';
+import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
@@ -21,10 +22,10 @@ export const Location = ({ title, description, setEdit, id }) => {
   };
 
   return (
-    <Card sx={{ maxWidth: 400, maxHeight: 200, margin: '10px' }}>
+    <Card sx={{ maxHeight: 200, width: '100%', margin: '10px' }}>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {title}
+          <PlaceOutlinedIcon /> {title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {description}
