@@ -5,6 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { Location } from './Location';
 import { EditLocation } from './EditLocation';
 
+// Edit specific location
+// state: const [edit, setEdit] = useState({ id: null, status: false })
+// props values from Location & EditLocation: editId={setEdit.id} , editStatus={setEdit.status}
+
 export const LocationList = () => {
   const [locationList, setLocationList] = useState([]);
   const [edit, setEdit] = useState(false);

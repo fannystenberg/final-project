@@ -3,6 +3,11 @@ import { Card, CardContent, CardActions, Typography, TextField, IconButton } fro
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
+// Edit specific location
+// props: { title, description, setEdit, id, editId, editStatus }
+// edit button: onClick={() => setEdit({ editId: id, editStatus: true })
+// gives error: eslint no-unused-vars for editId and editStatus
+
 export const EditLocation = ({ description, id, setEdit }) => {
   const [inputValue, setInputValue] = useState('');
   const handleEdit = (locationId) => {
@@ -35,7 +40,7 @@ export const EditLocation = ({ description, id, setEdit }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <IconButton type="submit" onClick={() => handleEdit(id)}>
+        <IconButton type="submit" disabled={inputValue.length < 1} onClick={() => handleEdit(id)}>
           <SaveOutlinedIcon />
         </IconButton>
         <IconButton type="button" onClick={() => setEdit(false)}>
