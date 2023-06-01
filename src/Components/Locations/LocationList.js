@@ -5,13 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { Location } from './Location';
 import { EditLocation } from './EditLocation';
 
-// Edit specific location
-// state: const [edit, setEdit] = useState({ id: null, status: false })
-// props values from Location & EditLocation: editId={setEdit.id} , editStatus={setEdit.status}
-
 export const LocationList = () => {
   const [locationList, setLocationList] = useState([]);
-  const [edit, setEdit] = useState(false);
+  const [edit, setEdit] = useState({ id: null, status: false })
   const navigate = useNavigate();
   const accessToken = useSelector((store) => store.user.accessToken);
 
@@ -39,17 +35,17 @@ export const LocationList = () => {
       {locationList.map((location) => {
         return (
           <>
-            {!edit && <Location
+            {!edit.status && <Location
               key={location._id}
               title={location.location}
               description={location._id}
-              setEdit={setEdit}
-              id={location._id} />}
-            {edit && <EditLocation
+              id={location._id}
+              setEdit={setEdit} />}
+            {edit.status && location._id === edit.id ? (<EditLocation
               key={location._id}
               description={location._id}
               id={location._id}
-              setEdit={setEdit} />}
+              setEdit={setEdit} />) : null}
           </>
         )
       })}

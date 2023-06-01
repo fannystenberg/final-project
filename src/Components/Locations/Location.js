@@ -3,11 +3,6 @@ import { Card, CardContent, CardActions, Typography, IconButton } from '@mui/mat
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
-// Edit specific location
-// props: { title, description, setEdit, id, editId, editStatus }
-// edit button: onClick={() => setEdit({ editId: id, editStatus: true })
-// gives error: eslint no-unused-vars for editId and editStatus
-
 export const Location = ({ title, description, setEdit, id }) => {
   const handleDelete = (locationId) => {
     const options = {
@@ -21,6 +16,10 @@ export const Location = ({ title, description, setEdit, id }) => {
       .then((data) => { console.log(data.response) })
   };
 
+  const handleEdit = (locationId) => {
+    setEdit({ id: locationId, status: true })
+  };
+
   return (
     <Card sx={{ maxWidth: 400, maxHeight: 200, margin: '10px' }}>
       <CardContent>
@@ -32,7 +31,7 @@ export const Location = ({ title, description, setEdit, id }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <IconButton type="button" onClick={() => setEdit(true)}>
+        <IconButton type="button" onClick={() => handleEdit(id)}>
           <EditOutlinedIcon />
         </IconButton>
         <IconButton type="button" onClick={() => handleDelete(id)}>

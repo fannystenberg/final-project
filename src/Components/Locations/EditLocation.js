@@ -3,14 +3,9 @@ import { Card, CardContent, CardActions, Typography, TextField, IconButton } fro
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
-// Edit specific location
-// props: { title, description, setEdit, id, editId, editStatus }
-// edit button: onClick={() => setEdit({ editId: id, editStatus: true })
-// gives error: eslint no-unused-vars for editId and editStatus
-
 export const EditLocation = ({ description, id, setEdit }) => {
   const [inputValue, setInputValue] = useState('');
-  const handleEdit = (locationId) => {
+  const onSubmit = (locationId) => {
     const options = {
       method: 'PATCH',
       headers: {
@@ -22,6 +17,10 @@ export const EditLocation = ({ description, id, setEdit }) => {
       .then((res) => res.json())
       .then((data) => { console.log(data.response) })
       .finally(() => setEdit(false))
+  };
+
+  const handleEdit = (locationId) => {
+    setEdit({ id: locationId, status: false })
   };
 
   return (
@@ -40,10 +39,10 @@ export const EditLocation = ({ description, id, setEdit }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <IconButton type="submit" disabled={inputValue.length < 1} onClick={() => handleEdit(id)}>
+        <IconButton type="submit" disabled={inputValue.length < 1} onClick={() => onSubmit(id)}>
           <SaveOutlinedIcon />
         </IconButton>
-        <IconButton type="button" onClick={() => setEdit(false)}>
+        <IconButton type="button" onClick={() => handleEdit(id)}>
           <CloseOutlinedIcon />
         </IconButton>
       </CardActions>
