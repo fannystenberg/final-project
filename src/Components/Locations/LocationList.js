@@ -7,6 +7,7 @@ import { EditLocation } from './EditLocation';
 
 export const LocationList = () => {
   const [locationList, setLocationList] = useState([]);
+  const [edit, setEdit] = useState(false);
   const navigate = useNavigate();
   const accessToken = useSelector((store) => store.user.accessToken);
 
@@ -34,12 +35,17 @@ export const LocationList = () => {
       {locationList.map((location) => {
         return (
           <>
-            <Location
+            {!edit && <Location
               key={location._id}
               title={location.location}
-              description={location.createdAt}
-              id={location._id} />
-            <EditLocation description={location.createdAt} />
+              description={location._id}
+              setEdit={setEdit}
+              id={location._id} />}
+            {edit && <EditLocation
+              key={location._id}
+              description={location._id}
+              id={location._id}
+              setEdit={setEdit} />}
           </>
         )
       })}

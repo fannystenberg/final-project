@@ -3,7 +3,7 @@ import { Card, CardContent, CardActions, Typography, IconButton } from '@mui/mat
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
-export const Location = ({ title, description, id }) => {
+export const Location = ({ title, description, setEdit, id }) => {
   const handleDelete = (locationId) => {
     const options = {
       method: 'DELETE',
@@ -27,7 +27,7 @@ export const Location = ({ title, description, id }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <IconButton type="button">
+        <IconButton type="button" onClick={() => setEdit(true)}>
           <EditOutlinedIcon />
         </IconButton>
         <IconButton type="button" onClick={() => handleDelete(id)}>
