@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardActions, Typography, TextField, IconButton } from '@mui/material';
-import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
@@ -29,7 +28,7 @@ export const EditLocation = ({ title, location, id, setEdit }) => {
   return (
     <Card sx={{ maxHeight: 300, width: '100%', margin: '10px' }}>
       <CardContent>
-        <Typography gutterBottom variant="h5" color="red" component="div">
+        <Typography variant="h5" color="red" margin="10px 0">
           {title}
         </Typography>
         <TextField
@@ -38,8 +37,8 @@ export const EditLocation = ({ title, location, id, setEdit }) => {
           placeholder="Type new title here"
           onChange={(e) => setTitleValue(e.target.value)}
           value={titleValue} />
-        <Typography variant="body2" color="red">
-          <PlaceOutlinedIcon />{location}
+        <Typography variant="body2" color="red" margin="10px 0">
+          {location}
         </Typography>
         <TextField
           fullWidth

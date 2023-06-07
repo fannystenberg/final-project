@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Box, Typography, TextField, MenuItem, Paper, Grid, IconButton } from '@mui/material';
+import { Typography, TextField, MenuItem, Paper, Grid, IconButton } from '@mui/material';
 import AddLocationAltOutlinedIcon from '@mui/icons-material/AddLocationAltOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
-const labels = ['Restaurant', 'Viewpoint', 'Hotel', 'City', 'Other'];
+export const Labels = ['Restaurant', 'Viewpoint', 'Hotel', 'City', 'Other'];
 
 export const NewLocation = () => {
   const [titleValue, setTitleValue] = useState('');
@@ -18,7 +18,8 @@ export const NewLocation = () => {
     setLabel('');
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     const options = {
       method: 'POST',
       headers: {
@@ -37,7 +38,7 @@ export const NewLocation = () => {
   };
   return (
     <>
-      <Paper>
+      <Paper sx={{ padding: '10px 5px', margin: '10px' }}>
         <IconButton
           onClick={showForm}
           type="button">
@@ -47,55 +48,54 @@ export const NewLocation = () => {
       </Paper>
       {visible && (
         <Paper sx={{ maxHeight: 300, width: '100%', margin: '10px', padding: '20px 0' }}>
-          <Box component="form" noValidate onSubmit={handleSubmit}>
-            <Grid container alignItems="center" spacing={2}>
-              <Grid xs={10} md={11} item>
-                <TextField
-                  sx={{ margin: '10px' }}
-                  id="title"
-                  variant="standard"
-                  fullWidth
-                  label="Add new title"
-                  onChange={(e) => setTitleValue(e.target.value)}
-                  value={titleValue} />
-                <TextField
-                  sx={{ margin: '10px' }}
-                  id="location"
-                  variant="standard"
-                  fullWidth
-                  label="Add new location"
-                  onChange={(e) => setLocationValue(e.target.value)}
-                  value={locationValue} />
-                <TextField
-                  select
-                  sx={{ margin: '10px' }}
-                  id="tag"
-                  variant="standard"
-                  fullWidth
-                  label="Choose label"
-                  onChange={(e) => setLabel(e.target.value)}
-                  value={label}>
-                  {labels.map((option) => (
-                    <MenuItem key={option} value={option}>
-                      {option}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              </Grid>
-              <Grid xs={10} item>
-                <IconButton
-                  disabled={locationValue.length < 1}
-                  type="submit">
-                  <AddLocationAltOutlinedIcon />
-                </IconButton>
-                <IconButton
-                  onClick={hideForm}
-                  type="button">
-                  <CloseOutlinedIcon />
-                </IconButton>
-              </Grid>
+          <Grid container alignItems="center" padding="5px" spacing={2}>
+            <Grid xs={10} md={11} item>
+              <TextField
+                sx={{ margin: '5px 15px' }}
+                id="title"
+                variant="standard"
+                fullWidth
+                label="Add new title"
+                onChange={(e) => setTitleValue(e.target.value)}
+                value={titleValue} />
+              <TextField
+                sx={{ margin: '5px 15px' }}
+                id="location"
+                variant="standard"
+                fullWidth
+                label="Add new location"
+                onChange={(e) => setLocationValue(e.target.value)}
+                value={locationValue} />
+              <TextField
+                select
+                sx={{ margin: '5px 15px' }}
+                id="tag"
+                variant="standard"
+                fullWidth
+                label="Choose label"
+                onChange={(e) => setLabel(e.target.value)}
+                value={label}>
+                {Labels.map((option) => (
+                  <MenuItem key={option} value={option}>
+                    {option}
+                  </MenuItem>
+                ))}
+              </TextField>
             </Grid>
-          </Box>
+            <Grid xs={10} item>
+              <IconButton
+                disabled={locationValue.length < 1}
+                type="submit"
+                onClick={handleSubmit}>
+                <AddLocationAltOutlinedIcon />
+              </IconButton>
+              <IconButton
+                onClick={hideForm}
+                type="button">
+                <CloseOutlinedIcon />
+              </IconButton>
+            </Grid>
+          </Grid>
         </Paper>
       )}
     </>

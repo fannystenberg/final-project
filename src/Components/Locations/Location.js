@@ -25,14 +25,14 @@ export const Location = ({ title, location, label, setEdit, id }) => {
   return (
     <Card sx={{ maxHeight: 200, width: '100%', margin: '10px' }}>
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" fontSize="20px">
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          <PlaceOutlinedIcon /> {location}
+        <Typography gutterBottom variant="body2" color="text.secondary">
+          <PlaceOutlinedIcon sx={{ marginBottom: '-5px' }} /> {location}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          <LabelOutlinedIcon /> {label}
+          <LabelOutlinedIcon sx={{ marginBottom: '-7px' }} /> {label}
         </Typography>
       </CardContent>
       <CardActions>
