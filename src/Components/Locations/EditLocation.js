@@ -4,15 +4,17 @@ import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
-export const EditLocation = ({ title, description, id, setEdit }) => {
-  const [inputValue, setInputValue] = useState('');
+export const EditLocation = ({ title, location, id, setEdit }) => {
+  const [titleValue, setTitleValue] = useState('');
+  const [locationValue, setLocationValue] = useState('');
+
   const onSubmit = (locationId) => {
     const options = {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ location: inputValue })
+      body: JSON.stringify({ title: titleValue, location: locationValue })
     }
     fetch(`https://final-project-es4c3pthxq-no.a.run.app/locations/${locationId}/edit`, options)
       .then((res) => res.json())
@@ -25,26 +27,29 @@ export const EditLocation = ({ title, description, id, setEdit }) => {
   };
 
   return (
-    <Card sx={{ maxHeight: 200, width: '100%', margin: '10px' }}>
+    <Card sx={{ maxHeight: 300, width: '100%', margin: '10px' }}>
       <CardContent>
         <Typography gutterBottom variant="h5" color="red" component="div">
-          <PlaceOutlinedIcon /> {title}
+          {title}
         </Typography>
         <TextField
           fullWidth
-          id="location"
+          label="Title"
+          placeholder="Type new title here"
+          onChange={(e) => setTitleValue(e.target.value)}
+          value={titleValue} />
+        <Typography variant="body2" color="red">
+          <PlaceOutlinedIcon />{location}
+        </Typography>
+        <TextField
+          fullWidth
           label="Location"
           placeholder="Type new location here"
-          name="location"
-          autoComplete="location"
-          onChange={(e) => setInputValue(e.target.value)}
-          value={inputValue} />
-        <Typography variant="body2" color="text.secondary">
-          {description}
-        </Typography>
+          onChange={(e) => setLocationValue(e.target.value)}
+          value={locationValue} />
       </CardContent>
       <CardActions>
-        <IconButton type="submit" disabled={inputValue.length < 1} onClick={() => onSubmit(id)}>
+        <IconButton type="submit" disabled={titleValue.length < 1} onClick={() => onSubmit(id)}>
           <SaveOutlinedIcon />
         </IconButton>
         <IconButton type="button" onClick={() => handleEdit(id)}>
