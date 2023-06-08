@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardActions, Typography, TextField, IconButton } from '@mui/material';
-import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import { SaveOutlined, CloseOutlined } from '@mui/icons-material';
 
 export const EditLocation = ({ title, location, id, setEdit }) => {
   const [titleValue, setTitleValue] = useState('');
@@ -49,10 +48,10 @@ export const EditLocation = ({ title, location, id, setEdit }) => {
       </CardContent>
       <CardActions>
         <IconButton type="submit" disabled={titleValue.length < 1} onClick={() => onSubmit(id)}>
-          <SaveOutlinedIcon />
+          <SaveOutlined />
         </IconButton>
         <IconButton type="button" onClick={() => handleEdit(id)}>
-          <CloseOutlinedIcon />
+          <CloseOutlined />
         </IconButton>
       </CardActions>
     </Card>

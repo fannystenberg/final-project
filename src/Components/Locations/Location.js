@@ -1,9 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardActions, Typography, IconButton } from '@mui/material';
-import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-import LabelOutlinedIcon from '@mui/icons-material/LabelOutlined';
+import { PlaceOutlined, LabelOutlined, EditOutlined, DeleteOutlined } from '@mui/icons-material';
 
 export const Location = ({ title, location, label, setEdit, id }) => {
   const handleDelete = (locationId) => {
@@ -29,18 +26,18 @@ export const Location = ({ title, location, label, setEdit, id }) => {
           {title}
         </Typography>
         <Typography gutterBottom variant="body2" color="text.secondary">
-          <PlaceOutlinedIcon sx={{ marginBottom: '-5px' }} /> {location}
+          <PlaceOutlined sx={{ marginBottom: '-5px' }} /> {location}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          <LabelOutlinedIcon sx={{ marginBottom: '-7px' }} /> {label}
+          <LabelOutlined sx={{ marginBottom: '-7px' }} /> {label}
         </Typography>
       </CardContent>
       <CardActions>
         <IconButton type="button" onClick={() => handleEdit(id)}>
-          <EditOutlinedIcon />
+          <EditOutlined />
         </IconButton>
         <IconButton type="button" onClick={() => handleDelete(id)}>
-          <DeleteOutlinedIcon />
+          <DeleteOutlined />
         </IconButton>
       </CardActions>
     </Card>

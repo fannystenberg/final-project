@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from 'styled-components';
+import { HamburgerMenu } from 'Components/HamburgerMenu';
 import { LocationList } from './LocationList';
 import { NewLocation } from './NewLocation';
 
 export const LocationPage = () => {
+  const [toggleForm, setToggleForm] = useState(false);
+
   return (
     <Wrapper>
-      <NewLocation />
-      <LocationList />
+      <HamburgerMenu setVisible={setToggleForm} />
+      {toggleForm && <NewLocation setVisible={setToggleForm} />}
+      {!toggleForm && <LocationList />}
     </Wrapper>
   )
 };
