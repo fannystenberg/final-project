@@ -32,6 +32,7 @@ export const NewLocation = ({ setVisible }) => {
         setTitleValue('');
         setLocationValue('');
         setLabel('');
+        setVisible(false);
       })
   };
   return (
