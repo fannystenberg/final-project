@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -53,6 +54,7 @@ export const LocationList = () => {
 
   return (
     <>
+      {!edit.status &&
       <Paper sx={{ width: '100%' }}>
         <TextField
           sx={{ width: '90%', margin: '10px' }}
@@ -72,7 +74,8 @@ export const LocationList = () => {
         <IconButton type="button" sx={{ marginTop: '10px' }} onClick={() => handleFilter()}>
           <SearchOutlinedIcon fontSize="large" />
         </IconButton>
-      </Paper>
+      </Paper>}
+
       {List.map((location) => {
         return (
           <>
