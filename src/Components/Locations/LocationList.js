@@ -3,13 +3,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Paper, TextField, MenuItem, IconButton } from '@mui/material';
+import { Paper, TextField, MenuItem, IconButton, CircularProgress } from '@mui/material';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { Location } from './Location';
 import { EditLocation } from './EditLocation';
 import { Labels } from './NewLocation';
 
 export const LocationList = () => {
+  const [loading, setLoading] = useState(false);
   const [locationList, setLocationList] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
   const [filter, setFilter] = useState('');
@@ -22,22 +23,21 @@ export const LocationList = () => {
     if (!accessToken) {
       navigate('/');
     }
-  }, [accessToken, navigate]);
-
-  useEffect(() => {
     const options = {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         Authorization: accessToken
       }
-    }
+    };
+    setLoading(true);
     fetch('https://final-project-es4c3pthxq-no.a.run.app/locations', options)
       .then((res) => res.json())
       .then((data) => {
         setLocationList(data.response);
       })
-  });
+      .finally(() => setLoading(false))
+  }, [accessToken, navigate]);
 
   const handleFilter = () => {
     const newArray = locationList.filter((list) => {
@@ -75,7 +75,7 @@ export const LocationList = () => {
           <SearchOutlinedIcon fontSize="large" />
         </IconButton>
       </Paper>}
-
+      {loading && <CircularProgress style={{ width: '60px', margin: '40px' }} />}
       {List.map((location) => {
         return (
           <>
