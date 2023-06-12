@@ -64,7 +64,7 @@ export const HamburgerMenu = ({ setVisible }) => {
         }}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
-        <MenuItem onClick={handleClose}>
+        <MenuItem disabled>
           <Avatar /> Profile
         </MenuItem>
         <MenuItem onClick={() => setVisible(true)}>
@@ -73,7 +73,7 @@ export const HamburgerMenu = ({ setVisible }) => {
           </ListItemIcon>
           Add another location
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem disabled>
           <ListItemIcon>
             <FilterAltOutlined fontSize="small" />
           </ListItemIcon>
