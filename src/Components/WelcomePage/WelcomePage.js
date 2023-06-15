@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Switch, Typography } from '@mui/material';
+import { Switch } from '@mui/material';
 import { styled } from 'styled-components';
 import { Player } from '@lottiefiles/react-lottie-player';
+// eslint-disable-next-line import/no-cycle
 import { Form } from './Form';
 
 export const WelcomePage = () => {
@@ -21,24 +22,16 @@ export const WelcomePage = () => {
           autoplay
           speed={1.0} />
         <TextWrapper>
-          <Typography variant="body1" fontSize="18px" fontWeight="600">
-            Save your favorite locations all in one place
-          </Typography>
-          <Typography variant="body1" fontSize="16px">
-            Sign in or create an account to get started!
-          </Typography>
+          <HeadlineText>Save your favorite locations all in one place</HeadlineText>
+          <BodyText>Sign in or create an account to get started</BodyText>
         </TextWrapper>
       </LottieWrapper>
       <FormWrapper>
         {!checked ? <Form path="signin" title="Sign in" btnText="Sign in" /> : <Form path="signup" title="Create account" btnText="Sign up" />}
         <ToggleWrapper>
-          <Typography variant="body1" fontSize="16px">
-            Sign in
-          </Typography>
+          <BodyText>Sign in</BodyText>
           <Switch checked={checked} onChange={handleToggle} />
-          <Typography variant="body1" fontSize="16px">
-            Create account
-          </Typography>
+          <BodyText>Create account</BodyText>
         </ToggleWrapper>
       </FormWrapper>
     </Wrapper>
@@ -52,6 +45,8 @@ export const Wrapper = styled.section`
     @media (min-width: 667px) {
       display: grid;
       grid-template-columns: 50% 50%;
+      gap: 10px;
+      margin-top: 15vh;
     }
 `;
 
@@ -61,10 +56,42 @@ export const LottieWrapper = styled.div`
     justify-content: center;
     align-items: center;
     max-height: 20vh;
-    margin: 40px 10px 20px 10px;
+    margin: 50px 10px 25px 10px;
 
     @media (min-width: 667px) {
       max-height: 100vh;
+      margin: 0;
+    }
+`;
+
+export const TextWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px 0;
+
+    @media (min-width: 667px) {
+      margin: 10px 0;
+    }
+`;
+
+export const HeadlineText = styled.p`
+  font-family: 'Heebo', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+
+  @media (min-width: 667px) {
+    font-size: 22px;
+    }
+`;
+
+export const BodyText = styled.p`
+  font-family: 'Heebo', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+
+  @media (min-width: 667px) {
+    font-size: 16px;
     }
 `;
 
@@ -72,14 +99,6 @@ export const FormWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-`;
-
-export const TextWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 90%;
-    margin: 5px 0;
 `;
 
 export const ToggleWrapper = styled.div`

@@ -21,7 +21,12 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90%;
-  padding: 20px;
-  margin: 0 auto;
+  min-width: 95vw;
+  padding: 10px;
+  margin: 0;
+  max-width: 300px;
+
+  @media (min-width: 667px) {
+      max-width: 100vw;
+    }
 `;

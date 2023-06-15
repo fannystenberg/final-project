@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector, batch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { user } from 'reducer/user';
-import { Button, CssBaseline, TextField, Grid, Box, Typography, Container, CircularProgress } from '@mui/material';
+import { Button, CssBaseline, TextField, Grid, Box, Container, CircularProgress } from '@mui/material';
+// eslint-disable-next-line import/no-cycle
+import { BodyText, HeadlineText } from './WelcomePage';
 
 export const Form = ({ path, title, btnText }) => {
   const [loading, setLoading] = useState(false);
@@ -54,9 +56,7 @@ export const Form = ({ path, title, btnText }) => {
           flexDirection: 'column',
           alignItems: 'center'
         }}>
-        <Typography component="h1" variant="h5" textTransform="uppercase">
-          {title}
-        </Typography>
+        <HeadlineText style={{ textTransform: 'uppercase' }}>{title}</HeadlineText>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -78,9 +78,9 @@ export const Form = ({ path, title, btnText }) => {
                 id="password"
                 autoComplete="new-password" />
             </Grid>
-            <Typography variant="body1" color="red" textTransform="uppercase" margin="5px auto">
+            <BodyText style={{ margin: '5px auto', color: 'red', textTransform: 'uppercase' }}>
               {error}
-            </Typography>
+            </BodyText>
           </Grid>
           {!loading && <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>{btnText}</Button>}
         </Box>
