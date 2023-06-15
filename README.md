@@ -9,4 +9,4 @@ Describe how you approached to problem, and what tools and techniques you used t
 ## View it live
 
 API: https://final-project-es4c3pthxq-no.a.run.app/
-Frontend: 
+Frontend: https://final-project-byfanny.netlify.app/
