@@ -16,12 +16,15 @@ export const LocationList = () => {
   const [filter, setFilter] = useState('');
   const [listType, setListType] = useState(false);
   const [edit, setEdit] = useState({ id: null, status: false })
-  const navigate = useNavigate();
   const accessToken = useSelector((store) => store.user.accessToken);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!accessToken) {
       navigate('/');
+    }
+    if (locationList === []) {
+      setLoading(true);
     }
     const options = {
       method: 'GET',
@@ -30,14 +33,13 @@ export const LocationList = () => {
         Authorization: accessToken
       }
     };
-    setLoading(true);
     fetch('https://final-project-es4c3pthxq-no.a.run.app/locations', options)
       .then((res) => res.json())
       .then((data) => {
         setLocationList(data.response);
       })
       .finally(() => setLoading(false))
-  }, [accessToken, navigate]);
+  }, [accessToken, navigate, locationList]);
 
   const handleFilter = () => {
     const newArray = locationList.filter((list) => {
@@ -90,6 +92,7 @@ export const LocationList = () => {
               key={location._id}
               title={location.title}
               location={location.location}
+              tag={location.tag}
               id={location._id}
               setEdit={setEdit} />) : null}
           </>
