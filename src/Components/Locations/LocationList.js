@@ -57,9 +57,9 @@ export const LocationList = () => {
   return (
     <>
       {!edit.status &&
-      <Paper sx={{ width: '100%' }}>
+      <Paper sx={{ width: '100%', margin: '10px 0' }}>
         <TextField
-          sx={{ width: '90%', margin: '10px' }}
+          sx={{ width: '90%', margin: '10px 5px 10px 10px' }}
           select
           id="tag"
           variant="standard"

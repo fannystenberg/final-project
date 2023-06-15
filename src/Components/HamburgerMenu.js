@@ -71,7 +71,7 @@ export const HamburgerMenu = ({ setVisible }) => {
           <ListItemIcon>
             <AddLocationAltOutlined fontSize="small" />
           </ListItemIcon>
-          Add another location
+          Add new location
         </MenuItem>
         <MenuItem disabled>
           <ListItemIcon>
@@ -84,7 +84,7 @@ export const HamburgerMenu = ({ setVisible }) => {
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          Logout
+          Sign out
         </MenuItem>
       </Menu>
     </>
