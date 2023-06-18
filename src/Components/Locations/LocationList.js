@@ -85,6 +85,7 @@ export const LocationList = () => {
           <>
             {!edit.status && <Location
               key={location._id}
+              visitedValue={location.visited}
               title={location.title}
               location={location.location}
               label={location.tag}
