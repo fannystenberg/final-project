@@ -8,6 +8,7 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { Location } from './Location';
 import { EditLocation } from './EditLocation';
 import { Labels } from './NewLocation';
+import { EmptyList } from './EmptyList';
 
 export const LocationList = () => {
   const [loading, setLoading] = useState(false);
@@ -77,6 +78,7 @@ export const LocationList = () => {
           <SearchOutlinedIcon fontSize="large" />
         </IconButton>
       </Paper>}
+      {List.length === 0 && <EmptyList />}
       {loading && <CircularProgress style={{ width: '60px', margin: '40px' }} />}
       {List.map((location) => {
         return (

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { TextField, MenuItem, Paper, Grid, IconButton } from '@mui/material';
 import { AddLocationAltOutlined, CloseOutlined } from '@mui/icons-material';
 
@@ -8,6 +9,8 @@ export const NewLocation = ({ setVisible }) => {
   const [titleValue, setTitleValue] = useState('');
   const [locationValue, setLocationValue] = useState('');
   const [label, setLabel] = useState('');
+  const accessToken = useSelector((store) => store.user.accessToken);
+  const userId = useSelector((store) => store.user.userId)
 
   const hideForm = () => {
     setVisible(false);
@@ -21,13 +24,13 @@ export const NewLocation = ({ setVisible }) => {
     const options = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: accessToken
       },
-      body: JSON.stringify({ title: titleValue, location: locationValue, tag: label })
+      body: JSON.stringify({ title: titleValue, location: locationValue, tag: label, user: userId })
     }
     fetch('https://final-project-es4c3pthxq-no.a.run.app/locations/', options)
       .then((res) => res.json())
-      .then((data) => { console.log(data.response) })
       .finally(() => {
         setTitleValue('');
         setLocationValue('');
